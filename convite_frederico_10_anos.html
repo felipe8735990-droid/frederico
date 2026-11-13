@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#101b3d">
+  <title>Frederico 10 anos | Convite</title>
+  <style>
+    :root {
+      --red: #e52332;
+      --blue: #102b62;
+      --navy: #09142e;
+      --white: #fff;
+      --muted: #dce5f7;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; min-height: 100vh; color: var(--white);
+      font-family: Arial, Helvetica, sans-serif;
+      background:
+        radial-gradient(circle at 15% 15%, rgba(229,35,50,.24), transparent 28%),
+        radial-gradient(circle at 90% 80%, rgba(35,104,207,.28), transparent 30%),
+        linear-gradient(145deg, #070e20, #102b62 58%, #09142e);
+      overflow-x: hidden;
+    }
+    body::before {
+      content: ""; position: fixed; inset: 0; pointer-events: none; opacity: .15;
+      background-image:
+        linear-gradient(30deg, transparent 48.8%, #9db8eb 49.3%, #9db8eb 49.7%, transparent 50.2%),
+        linear-gradient(150deg, transparent 48.8%, #9db8eb 49.3%, #9db8eb 49.7%, transparent 50.2%);
+      background-size: 90px 90px; mask-image: linear-gradient(to bottom, black, transparent 90%);
+    }
+    .wrap { width: min(940px, 92%); margin: 0 auto; padding: 28px 0 48px; position: relative; }
+    .topline { display:flex; justify-content:center; align-items:center; gap:10px; text-transform:uppercase; letter-spacing:4px; font-size:12px; font-weight:800; color:#c8d8f8; }
+    .topline::before, .topline::after { content:""; height:2px; width:38px; background:var(--red); }
+    .hero { text-align:center; padding: 32px 14px 24px; }
+    .spider-mark {
+      width:78px; height:78px; margin:0 auto 18px; border-radius:50%;
+      display:grid; place-items:center; background:var(--red);
+      border:4px solid white; box-shadow:0 0 0 7px rgba(229,35,50,.18), 0 12px 35px #0008;
+      font-size:42px;
+    }
+    h1 { margin:0; line-height:.95; text-transform:uppercase; font-size:clamp(42px, 9vw, 82px); font-weight:1000; letter-spacing:-3px; text-shadow:4px 5px 0 #a70f25; }
+    h1 span { display:block; color:#ff3545; font-size:.48em; letter-spacing:7px; margin-bottom:12px; text-shadow:none; }
+    .subtitle { margin:22px auto 0; max-width:570px; color:var(--muted); font-size:clamp(16px, 3vw, 20px); line-height:1.55; }
+    .age { display:inline-block; margin-top:22px; padding:10px 20px; background:var(--red); border:2px solid white; border-radius:8px; font-weight:900; font-size:18px; transform:rotate(-2deg); box-shadow:5px 5px 0 #071126; }
+    .content { display:grid; grid-template-columns: .9fr 1.1fr; gap:22px; align-items:stretch; margin-top:18px; }
+    .panel { border:1px solid #ffffff35; border-radius:20px; padding:26px; background:linear-gradient(145deg, #ffffff14, #ffffff08); box-shadow:0 18px 45px #0003; backdrop-filter:blur(8px); }
+    .panel h2 { margin:0 0 20px; font-size:21px; text-transform:uppercase; letter-spacing:1px; }
+    .detail { display:flex; gap:14px; align-items:flex-start; margin:18px 0; }
+    .ico { flex:0 0 42px; height:42px; border-radius:12px; display:grid; place-items:center; background:var(--red); font-size:21px; }
+    .detail strong { display:block; margin:2px 0 5px; font-size:12px; text-transform:uppercase; letter-spacing:1.5px; color:#ff8991; }
+    .detail span { display:block; line-height:1.45; color:#fff; }
+    .hint { color:#cbd8f1; font-size:13px; line-height:1.5; margin:20px 0 0; }
+    form { display:grid; gap:14px; }
+    label { font-size:13px; font-weight:800; color:#e7edfa; display:block; margin-bottom:7px; }
+    input {
+      width:100%; border:1px solid #ffffff48; border-radius:10px; padding:14px 13px;
+      background:#07142d; color:white; font-size:16px; outline:none;
+    }
+    input:focus { border-color:#ff5360; box-shadow:0 0 0 3px #e5233233; }
+    input::placeholder { color:#8fa2c5; }
+    .submit {
+      border:0; border-radius:12px; padding:16px 18px; margin-top:4px;
+      background:linear-gradient(135deg, #ff3948, #d41128); color:white;
+      text-transform:uppercase; letter-spacing:1px; font-size:15px; font-weight:900;
+      cursor:pointer; box-shadow:0 7px 0 #8f1020; transition:transform .15s, filter .15s;
+    }
+    .submit:hover { filter:brightness(1.08); transform:translateY(-2px); }
+    .submit:active { transform:translateY(3px); box-shadow:0 3px 0 #8f1020; }
+    .privacy { font-size:11px; color:#bdcbea; line-height:1.5; text-align:center; margin:0; }
+    footer { text-align:center; color:#9fb2d6; font-size:12px; margin-top:30px; }
+    @media (max-width:700px) { .content { grid-template-columns:1fr; } .panel { padding:22px; } .hero { padding-top:25px; } }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <div class="topline">Você foi convocado!</div>
+    <header class="hero">
+      <div class="spider-mark" aria-hidden="true">🕷️</div>
+      <h1><span>Uma aventura especial</span>Frederico</h1>
+      <div class="age">10 ANOS!</div>
+      <p class="subtitle">Prepare sua teia e venha comemorar esse dia incrível!<br>
+        Você é nosso convidado para uma festa cheia de diversão, aventura e muita ação.</p>
+    </header>
+
+    <section class="content">
+      <div class="panel">
+        <h2>📍 Missão: comemorar!</h2>
+        <div class="detail">
+          <div class="ico">📅</div>
+          <div><strong>Data</strong><span>27 de outubro de 2027</span></div>
+        </div>
+        <div class="detail">
+          <div class="ico">⏰</div>
+          <div><strong>Horário</strong><span>A partir das 19 horas</span></div>
+        </div>
+        <div class="detail">
+          <div class="ico">📌</div>
+          <div><strong>Local</strong><span>Rua Dona Silvéria Moreira, 198<br>Centro — Lassance</span></div>
+        </div>
+        <p class="hint">Vista seu melhor sorriso, reúna sua energia de super-herói e venha fazer parte dessa comemoração!</p>
+      </div>
+
+      <div class="panel">
+        <h2>🕸️ Confirme sua presença</h2>
+        <form id="rsvpForm">
+          <div>
+            <label for="nome">Nome do participante</label>
+            <input id="nome" name="nome" type="text" placeholder="Digite seu nome completo" maxlength="80" required>
+          </div>
+          <div>
+            <label for="acompanhantes">Quantidade de acompanhantes</label>
+            <input id="acompanhantes" name="acompanhantes" type="number" min="0" max="20" value="0" required>
+          </div>
+          <div>
+            <label for="codigo">Código do convite</label>
+            <input id="codigo" name="codigo" type="text" placeholder="Digite o código recebido" maxlength="30" required>
+          </div>
+          <button class="submit" type="submit">Enviar confirmação pelo WhatsApp</button>
+          <p class="privacy">Ao clicar, o WhatsApp será aberto com seus dados preenchidos. Para concluir a confirmação, basta tocar em <strong>Enviar</strong> na conversa.</p>
+        </form>
+      </div>
+    </section>
+    <footer>Frederico • 10 anos • Uma grande aventura espera por você!</footer>
+  </main>
+
+  <script>
+    const form = document.getElementById('rsvpForm');
+    form.addEventListener('submit', function (event) {
+      event.preventDefault();
+
+      const nome = document.getElementById('nome').value.trim();
+      const acompanhantes = document.getElementById('acompanhantes').value;
+      const codigo = document.getElementById('codigo').value.trim();
+
+      if (!nome || !codigo || acompanhantes === '' || Number(acompanhantes) < 0 || Number(acompanhantes) > 20) {
+        alert('Confira os campos e preencha todas as informações corretamente.');
+        return;
+      }
+
+      const mensagem =
+        '🕷️ *CONFIRMAÇÃO DE PRESENÇA — ANIVERSÁRIO DO FREDERICO (10 ANOS)*%0A' +
+        '*Nome:* ' + nome + '%0A' +
+        '*Quantidade de acompanhantes:* ' + acompanhantes + '%0A' +
+        '*Código do convite:* ' + codigo + '%0A%0A' +
+        '*Evento:* 27/10/2027, a partir das 19h%0A' +
+        '*Local:* Rua Dona Silvéria Moreira, 198, Centro, Lassance';
+
+      const url = 'https://wa.me/5538920024724?text=' + encodeURIComponent(mensagem.replaceAll('%0A', '\n'));
+      window.open(url, '_blank', 'noopener,noreferrer');
+    });
+  </script>
+</body>
+</html>
