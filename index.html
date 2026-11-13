@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#08152f">
+  <meta name="description" content="Convite especial para os 10 anos do Frederico!">
+  <title>Frederico 10 anos | Uma aventura te espera!</title>
+  <style>
+    :root {
+      --red: #f02b3d;
+      --red-dark: #bd1429;
+      --blue: #153d83;
+      --navy: #07132b;
+      --ink: #061024;
+      --ice: #eaf2ff;
+      --muted: #aebfdf;
+      --glass: rgba(11, 30, 66, .76);
+      --line: rgba(208, 226, 255, .2);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0; min-height: 100vh; overflow-x: hidden;
+      color: var(--ice); font-family: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Arial, sans-serif;
+      background:
+        radial-gradient(ellipse at 50% 0%, rgba(28, 83, 164, .45), transparent 43%),
+        radial-gradient(circle at 10% 70%, rgba(240, 43, 61, .14), transparent 26%),
+        linear-gradient(145deg, #050b19 0%, #0b1e43 53%, #07132b 100%);
+    }
+    body::before {
+      content: ""; position: fixed; inset: 0; pointer-events: none; z-index: -1; opacity: .19;
+      background-image:
+        linear-gradient(30deg, transparent 49.2%, #9cb9e8 49.6%, #9cb9e8 49.9%, transparent 50.3%),
+        linear-gradient(150deg, transparent 49.2%, #9cb9e8 49.6%, #9cb9e8 49.9%, transparent 50.3%);
+      background-size: 82px 82px;
+      mask-image: radial-gradient(ellipse at top left, #000 0%, transparent 70%);
+    }
+    #stars { position: fixed; inset: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none; }
+    .web-corner { position: fixed; width: min(30vw, 330px); opacity: .18; pointer-events: none; z-index: 0; }
+    .web-corner.left { top: -35px; left: -35px; }
+    .web-corner.right { bottom: -35px; right: -35px; transform: rotate(180deg); }
+    .page { width: min(1000px, 92%); margin: 0 auto; padding: 25px 0 46px; position: relative; z-index: 1; }
+    .topbar { display: flex; align-items: center; justify-content: space-between; gap: 14px; }
+    .brand { display: flex; align-items: center; gap: 10px; font-size: 11px; font-weight: 900; letter-spacing: 2.4px; text-transform: uppercase; color: #d8e6ff; }
+    .brand-mark { width: 32px; height: 32px; display: grid; place-items: center; border-radius: 50%; background: var(--red); box-shadow: 0 0 22px #f02b3d66; }
+    .top-tag { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: #a8badb; border: 1px solid var(--line); padding: 8px 11px; border-radius: 99px; }
+    .hero { text-align: center; padding: clamp(45px, 8vw, 82px) 12px 34px; position: relative; }
+    .eyebrow { color: #bdcfee; font-size: 11px; letter-spacing: 4px; font-weight: 900; text-transform: uppercase; margin: 0 0 16px; }
+    .hero h1 { margin: 0; text-transform: uppercase; font-size: clamp(44px, 9vw, 88px); line-height: .92; letter-spacing: -.065em; font-weight: 1000; text-shadow: 0 5px 0 #09132b, 0 10px 30px #0008; }
+    .hero h1 span { display: block; font-size: .34em; letter-spacing: .32em; color: #ff5664; margin: 0 0 18px .3em; text-shadow: 0 0 24px #f02b3d55; }
+    .hero h1 em { color: #fff; font-style: normal; }
+    .hero-copy { max-width: 590px; margin: 22px auto 0; color: #d2def2; line-height: 1.7; font-size: clamp(15px, 2.3vw, 18px); }
+    .ten { display: inline-flex; align-items: center; gap: 10px; margin-top: 23px; padding: 10px 18px; background: linear-gradient(120deg, #f02b3d, #bd1429); border: 1px solid #ff8790; border-radius: 8px; box-shadow: 0 8px 25px #f02b3d33; transform: rotate(-2deg); font-weight: 1000; letter-spacing: 2px; }
+    .ten strong { font-size: 24px; line-height: 1; }
+    .intro-cta { display: block; margin: 30px auto 0; border: 1px solid #ffffff55; border-radius: 999px; padding: 14px 23px; color: white; background: #ffffff12; font-weight: 900; letter-spacing: 1px; text-transform: uppercase; cursor: pointer; transition: .2s; box-shadow: 0 0 0 0 #f02b3d55; animation: pulse 2s infinite; }
+    .intro-cta:hover { background: #f02b3d; transform: translateY(-3px); }
+    @keyframes pulse { 0%,100% { box-shadow: 0 0 0 0 #f02b3d00; } 50% { box-shadow: 0 0 0 9px #f02b3d18; } }
+    .swinger { position: absolute; top: 0; left: 12%; font-size: 26px; transform-origin: top center; animation: swing 3s ease-in-out infinite; filter: drop-shadow(0 5px 7px #0008); }
+    .swinger::before { content: ""; position: absolute; width: 1px; height: 58px; background: linear-gradient(#d9e7ff, transparent); left: 50%; bottom: 80%; }
+    @keyframes swing { 0%,100% { transform: rotate(19deg); } 50% { transform: rotate(-19deg); } }
+    .content { display: grid; grid-template-columns: .93fr 1.07fr; gap: 20px; align-items: stretch; opacity: 0; transform: translateY(24px); max-height: 0; overflow: hidden; pointer-events: none; transition: opacity .7s ease, transform .7s ease, max-height .9s ease; }
+    .content.revealed { opacity: 1; transform: translateY(0); max-height: 1400px; pointer-events: auto; }
+    .panel { border: 1px solid var(--line); border-radius: 22px; padding: clamp(21px, 4vw, 29px); background: linear-gradient(145deg, rgba(255,255,255,.10), rgba(255,255,255,.035)); box-shadow: 0 22px 55px #0004; backdrop-filter: blur(12px); position: relative; overflow: hidden; }
+    .panel::after { content: ""; position: absolute; top: -55px; right: -55px; width: 130px; height: 130px; border: 1px solid #ffffff16; border-radius: 50%; box-shadow: 0 0 0 15px #ffffff08, 0 0 0 30px #ffffff05; pointer-events: none; }
+    .panel h2 { margin: 0 0 22px; text-transform: uppercase; letter-spacing: 1.5px; font-size: 18px; }
+    .panel h2 small { display: block; color: #ff7c87; font-size: 10px; letter-spacing: 2px; margin-bottom: 7px; }
+    .detail { display: flex; align-items: flex-start; gap: 14px; margin: 19px 0; position: relative; z-index: 1; }
+    .detail-icon { width: 43px; height: 43px; flex: 0 0 43px; display: grid; place-items: center; border-radius: 13px; color: white; background: linear-gradient(145deg, #f02b3d, #b90f29); box-shadow: 0 7px 17px #f02b3d33; font-size: 20px; }
+    .detail strong { display: block; color: #ff8992; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; margin: 1px 0 5px; }
+    .detail span { display: block; color: #f4f7ff; line-height: 1.5; font-size: 15px; }
+    .countdown { margin-top: 23px; padding: 15px; border-radius: 14px; background: #06132a80; border: 1px solid #ffffff18; }
+    .countdown-title { font-size: 10px; color: #b8cae9; font-weight: 900; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 11px; }
+    .clock { display: grid; grid-template-columns: repeat(4, 1fr); gap: 7px; }
+    .timebox { text-align: center; padding: 9px 3px; border-radius: 9px; background: #ffffff0b; }
+    .timebox b { display: block; font-size: clamp(20px, 4vw, 27px); line-height: 1.1; color: #fff; font-variant-numeric: tabular-nums; }
+    .timebox span { display: block; color: #9fb3d6; font-size: 9px; letter-spacing: 1px; text-transform: uppercase; margin-top: 5px; }
+    .form-lead { color: #c0cfea; font-size: 13px; line-height: 1.6; margin: -10px 0 18px; }
+    .form-grid { display: grid; gap: 14px; position: relative; z-index: 1; }
+    label { display: block; font-size: 11px; font-weight: 900; letter-spacing: 1px; text-transform: uppercase; color: #e8efff; margin-bottom: 7px; }
+    input { width: 100%; padding: 14px 14px; border: 1px solid #ffffff32; border-radius: 11px; background: #06132a; color: white; font-size: 15px; outline: none; transition: border-color .2s, box-shadow .2s; }
+    input:focus { border-color: #ff5a68; box-shadow: 0 0 0 3px #f02b3d25; }
+    input::placeholder { color: #7187ad; }
+    .code-wrap { position: relative; }
+    .code-state { min-height: 18px; color: #ff9da5; font-size: 11px; margin: 6px 2px 0; }
+    .code-state.valid { color: #8ff0bd; }
+    .send-btn { border: 0; border-radius: 12px; padding: 16px 15px; color: #fff; background: linear-gradient(115deg, #fb3548, #c7122c); box-shadow: 0 6px 0 #8e1022, 0 12px 25px #f02b3d28; text-transform: uppercase; letter-spacing: 1px; font-weight: 1000; font-size: 13px; cursor: pointer; transition: transform .2s, filter .2s; }
+    .send-btn:hover { filter: brightness(1.12); transform: translateY(-2px); }
+    .send-btn:active { transform: translateY(3px); box-shadow: 0 3px 0 #8e1022; }
+    .send-btn:disabled { opacity: .45; cursor: not-allowed; filter: grayscale(.3); transform: none; }
+    .privacy { color: #9eb2d7; font-size: 10px; line-height: 1.55; text-align: center; margin: 0; }
+    .success-note { display: none; padding: 12px; border-radius: 10px; background: #1d9d6320; border: 1px solid #62dfa180; color: #b8ffd8; font-size: 12px; line-height: 1.5; }
+    .success-note.show { display: block; }
+    .bottom-note { text-align: center; margin: 27px auto 0; color: #8299bf; font-size: 11px; letter-spacing: 1px; }
+    .web-shot { position: fixed; inset: 0; pointer-events: none; z-index: 20; opacity: 0; background: radial-gradient(circle, #fff 0 1%, #dceaff 2%, transparent 4%); transform: scale(.05); }
+    .web-shot.fire { animation: webBurst .65s ease-out forwards; }
+    @keyframes webBurst { 0% { opacity: .85; transform: scale(.05); } 70% { opacity: .7; } 100% { opacity: 0; transform: scale(35); } }
+    .float-spider { position: fixed; bottom: 20px; right: 22px; font-size: 25px; z-index: 3; animation: bob 3.5s ease-in-out infinite; filter: drop-shadow(0 6px 9px #0008); }
+    @keyframes bob { 0%,100% { transform: translateY(0) rotate(-8deg); } 50% { transform: translateY(-13px) rotate(8deg); } }
+    .float-spider::before { content: ""; position: absolute; left: 50%; bottom: 80%; height: 75px; border-left: 1px solid #eaf2ff66; }
+    @media (max-width: 740px) {
+      .content { grid-template-columns: 1fr; }
+      .content.revealed { max-height: 1900px; }
+      .top-tag { font-size: 9px; letter-spacing: 1px; }
+      .swinger { left: 7%; }
+      .hero { padding-top: 65px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; transition-duration: .01ms !important; }
+    }
+  </style>
+</head>
+<body>
+  <canvas id="stars" aria-hidden="true"></canvas>
+  <svg class="web-corner left" viewBox="0 0 300 300" aria-hidden="true">
+    <g fill="none" stroke="#d8e8ff" stroke-width="1.5">
+      <path d="M0 0 L300 300 M0 0 L300 180 M0 0 L180 300 M0 0 L300 90 M0 0 L90 300 M0 0 L300 0 M0 0 L0 300"/>
+      <path d="M20 0 Q15 45 0 65 M65 0 Q55 75 0 110 M115 0 Q100 100 0 160 M170 0 Q145 135 0 215 M230 0 Q190 175 0 270"/>
+    </g>
+  </svg>
+  <svg class="web-corner right" viewBox="0 0 300 300" aria-hidden="true">
+    <g fill="none" stroke="#d8e8ff" stroke-width="1.5">
+      <path d="M0 0 L300 300 M0 0 L300 180 M0 0 L180 300 M0 0 L300 90 M0 0 L90 300 M0 0 L300 0 M0 0 L0 300"/>
+      <path d="M20 0 Q15 45 0 65 M65 0 Q55 75 0 110 M115 0 Q100 100 0 160 M170 0 Q145 135 0 215 M230 0 Q190 175 0 270"/>
+    </g>
+  </svg>
+
+  <main class="page">
+    <nav class="topbar">
+      <div class="brand"><span class="brand-mark">🕷</span> Convite especial</div>
+      <div class="top-tag">Uma missão de aniversário</div>
+    </nav>
+
+    <header class="hero">
+      <div class="swinger" aria-hidden="true">🕷️</div>
+      <p class="eyebrow">A cidade precisa de você!</p>
+      <h1><span>Prepare-se para a aventura</span><em>Frederico</em></h1>
+      <div class="ten"><strong>10</strong> ANOS DE AVENTURA!</div>
+      <p class="hero-copy">Uma grande comemoração está chegando! Você foi escolhido para fazer parte dessa missão especial. Coloque seu traje de super-herói e venha celebrar com a gente!</p>
+      <button type="button" class="intro-cta" id="openInvite">🕸️ Lançar teia e abrir convite</button>
+    </header>
+
+    <section class="content" id="inviteContent" aria-label="Detalhes da festa e confirmação de presença">
+      <article class="panel">
+        <h2><small>🕸️ Sua próxima missão</small>Informações da festa</h2>
+        <div class="detail">
+          <div class="detail-icon">📅</div>
+          <div><strong>Data</strong><span>27 de outubro de 2027</span></div>
+        </div>
+        <div class="detail">
+          <div class="detail-icon">⏰</div>
+          <div><strong>Horário</strong><span>A partir das 19 horas</span></div>
+        </div>
+        <div class="detail">
+          <div class="detail-icon">📍</div>
+          <div><strong>Endereço</strong><span>Rua Dona Silvéria Moreira, 198<br>Centro — Lassance</span></div>
+        </div>
+
+        <div class="countdown">
+          <div class="countdown-title">⏳ Contagem regressiva para a festa</div>
+          <div class="clock" aria-live="off">
+            <div class="timebox"><b id="days">000</b><span>Dias</span></div>
+            <div class="timebox"><b id="hours">00</b><span>Horas</span></div>
+            <div class="timebox"><b id="minutes">00</b><span>Minutos</span></div>
+            <div class="timebox"><b id="seconds">00</b><span>Segundos</span></div>
+          </div>
+        </div>
+      </article>
+
+      <article class="panel">
+        <h2><small>✅ Entre para a equipe</small>Confirme sua presença</h2>
+        <p class="form-lead">Preencha os dados abaixo para confirmar sua participação nessa aventura!</p>
+        <form class="form-grid" id="rsvpForm">
+          <div>
+            <label for="nome">Nome do participante</label>
+            <input id="nome" name="nome" type="text" placeholder="Seu nome completo" maxlength="80" autocomplete="name" required>
+          </div>
+          <div>
+            <label for="acompanhantes">Quantidade de acompanhantes</label>
+            <input id="acompanhantes" name="acompanhantes" type="number" min="0" max="20" value="0" inputmode="numeric" required>
+          </div>
+          <div class="code-wrap">
+            <label for="codigo">Código do convite</label>
+            <input id="codigo" name="codigo" type="text" placeholder="Digite o código do convite" maxlength="30" autocomplete="off" required>
+            <div class="code-state" id="codeState" aria-live="polite">O código é necessário para liberar a confirmação.</div>
+          </div>
+          <div class="success-note" id="successNote">Código validado! Sua confirmação está pronta para ser enviada pelo WhatsApp.</div>
+          <button class="send-btn" id="sendBtn" type="submit" disabled>Enviar confirmação pelo WhatsApp ↗</button>
+          <p class="privacy">O WhatsApp abrirá com a mensagem preenchida. Para concluir, basta tocar em <strong>Enviar</strong> na conversa.</p>
+        </form>
+      </article>
+    </section>
+
+    <p class="bottom-note">FREDERICO • 10 ANOS • UMA AVENTURA INESQUECÍVEL</p>
+  </main>
+  <div class="float-spider" aria-hidden="true">🕷️</div>
+  <div class="web-shot" id="webShot" aria-hidden="true"></div>
+
+  <script>
+    // Pequenas estrelas animadas no fundo
+    const canvas = document.getElementById('stars');
+    const ctx = canvas.getContext('2d');
+    let stars = [];
+    function resizeStars() {
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      canvas.width = innerWidth * dpr;
+      canvas.height = innerHeight * dpr;
+      canvas.style.width = innerWidth + 'px';
+      canvas.style.height = innerHeight + 'px';
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      stars = Array.from({ length: Math.min(95, Math.floor(innerWidth / 12)) }, () => ({
+        x: Math.random() * innerWidth, y: Math.random() * innerHeight,
+        r: Math.random() * 1.6 + .3, a: Math.random() * .55 + .15,
+        s: Math.random() * .008 + .002
+      }));
+    }
+    function drawStars() {
+      ctx.clearRect(0, 0, innerWidth, innerHeight);
+      for (const s of stars) {
+        s.a += Math.sin(Date.now() * s.s) * .001;
+        ctx.beginPath(); ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(220,235,255,${Math.max(.12, Math.min(.8, s.a))})`;
+        ctx.fill();
+      }
+      requestAnimationFrame(drawStars);
+    }
+    resizeStars(); drawStars();
+    addEventListener('resize', resizeStars);
+
+    // Revela o convite com um efeito de teia
+    const openButton = document.getElementById('openInvite');
+    const content = document.getElementById('inviteContent');
+    const webShot = document.getElementById('webShot');
+    openButton.addEventListener('click', () => {
+      webShot.classList.remove('fire');
+      void webShot.offsetWidth;
+      webShot.classList.add('fire');
+      content.classList.add('revealed');
+      openButton.textContent = '✓ Convite aberto!';
+      openButton.disabled = true;
+      setTimeout(() => content.scrollIntoView({ behavior: 'smooth', block: 'start' }), 180);
+    });
+
+    // Contagem regressiva: horário local do evento
+    const eventDate = new Date(2027, 9, 27, 19, 0, 0);
+    const pad = n => String(n).padStart(2, '0');
+    function updateCountdown() {
+      const diff = eventDate.getTime() - Date.now();
+      if (diff <= 0) {
+        document.querySelector('.countdown-title').textContent = '🎉 Hoje é dia de comemorar!';
+        ['days', 'hours', 'minutes', 'seconds'].forEach(id => document.getElementById(id).textContent = '0');
+        return;
+      }
+      const total = Math.floor(diff / 1000);
+      document.getElementById('days').textContent = String(Math.floor(total / 86400)).padStart(3, '0');
+      document.getElementById('hours').textContent = pad(Math.floor((total % 86400) / 3600));
+      document.getElementById('minutes').textContent = pad(Math.floor((total % 3600) / 60));
+      document.getElementById('seconds').textContent = pad(total % 60);
+    }
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+
+    // Validação do código do convite
+    const codeInput = document.getElementById('codigo');
+    const codeState = document.getElementById('codeState');
+    const sendBtn = document.getElementById('sendBtn');
+    const successNote = document.getElementById('successNote');
+    const INVITE_CODE = 'HELPP';
+
+    function validateCode() {
+      const valid = codeInput.value.trim().toUpperCase() === INVITE_CODE;
+      sendBtn.disabled = !valid;
+      codeState.textContent = valid
+        ? '✓ Código correto! Confirmação liberada.'
+        : (codeInput.value.trim() ? 'Código incorreto. Confira e tente novamente.' : 'O código é necessário para liberar a confirmação.');
+      codeState.classList.toggle('valid', valid);
+      successNote.classList.toggle('show', valid);
+      return valid;
+    }
+    codeInput.addEventListener('input', validateCode);
+
+    // Abre o WhatsApp com os dados da confirmação
+    document.getElementById('rsvpForm').addEventListener('submit', event => {
+      event.preventDefault();
+      if (!validateCode()) {
+        codeInput.focus();
+        return;
+      }
+      const nome = document.getElementById('nome').value.trim();
+      const acompanhantes = Number(document.getElementById('acompanhantes').value);
+      if (!nome) {
+        document.getElementById('nome').focus();
+        return;
+      }
+      if (!Number.isInteger(acompanhantes) || acompanhantes < 0 || acompanhantes > 20) {
+        alert('Informe uma quantidade de acompanhantes entre 0 e 20.');
+        document.getElementById('acompanhantes').focus();
+        return;
+      }
+
+      const message = [
+        '🕷️ CONFIRMAÇÃO DE PRESENÇA — ANIVERSÁRIO DO FREDERICO (10 ANOS)',
+        '',
+        `Nome do participante: ${nome}`,
+        `Quantidade de acompanhantes: ${acompanhantes}`,
+        `Código do convite: ${INVITE_CODE}`,
+        '',
+        'Data: 27/10/2027',
+        'Horário: A partir das 19 horas',
+        'Local: Rua Dona Silvéria Moreira, 198, Centro, Lassance'
+      ].join('\n');
+
+      const whatsappUrl = 'https://wa.me/5538920024724?text=' + encodeURIComponent(message);
+      window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
+    });
+  </script>
+</body>
+</html>
